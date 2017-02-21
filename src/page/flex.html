@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>flex</title>
+        <style>
+            .box {
+                width: 400px;
+                height: 100px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                border: 1px solid #c3c3c3;
+            }
+            .left {
+                flex-basis：100px;
+                -webkit-flex-basis: 100px;
+                /* Safari 6.1+ */
+                background-color: red;
+                height: 100%;
+            }
+            .right {
+                background-color: blue;
+                flex-grow: 1;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box">
+            <div class="left">
+                left
+            </div>
+            <dif class="right">
+                right
+            </dif>
+        </div>
+    </body>
+</html>
