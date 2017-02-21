@@ -1,0 +1,8 @@
+var minify = require('minify');
+
+minify('test.js', function(error, data) {
+    if (error)
+        console.error(error.message);
+    else
+        console.log(data);
+});
