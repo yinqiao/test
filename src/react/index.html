@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <!-- 参考文章 http://www.ruanyifeng.com/blog/2015/03/react.html -->
+    <script type="text/babel">
+      // 组件类的第一个字母必须大写
+      var HelloMessage = React.createClass({
+        render: function() {
+          return <h1>hello {this.props.name}</h1>
+        }
+      });
+
+      var Noteslist = React.createClass({
+        render: function () {
+          return (
+            <ol>
+              {
+                React.Children.map(this.props.children, function (child) {
+                  return <li>{child}</li>;
+                })
+              }
+            </ol>
+          )
+        }
+      });
+
+      var MyTitle = React.createClass({
+        propTypes: {
+          title: React.PropTypes.string.isRequired,
+        },
+
+        getDefaultProps: function () {
+          return {
+            title : 'Hello getDefaultProps'
+          }
+        },
+
+        render: function () {
+          return <h1> {this.props.title} </h1>
+        }
+      });
+
+      var MyComponent = React.createClass({
+        getInitialState: function () {
+          return {
+            inputValue: '请输入',
+            opacity: 1.0
+          }
+        },
+        // 已插入真实 DOM
+        componentDidMount: function () {
+          this.setState({
+            opacity: 0.5
+          });
+
+          // 发送AJAX请求
+
+        },
+        handleChange: function(e) {
+          this.setState({
+            // inputValue: this.refs.myTextInput.value
+            inputValue: e.target.value
+          });
+        },
+        handleClick: function() {
+          this.refs.myTextInput.focus();
+        },
+        render: function() {
+          return (
+            <div style={{opacity: this.state.opacity}}>
+              <input type="text" placeholder="请输入" ref="myTextInput" onChange={this.handleChange}/>
+              <input type="button" value="Focus the text input" onClick={this.handleClick} />
+              <span>{this.state.inputValue}</span>
+            </div>
+          );
+        }
+      });
+
+      // propTypes 属性验证组件实例的属性
+      let data = 'mytitle';
+
+      ReactDOM.render(
+        <div>
+          <HelloMessage name="JJ"/>
+          <Noteslist>
+            <span>hello</span>
+            <span>world</span>
+          </Noteslist>
+          <MyTitle />
+          <MyTitle title={data}></MyTitle>
+          <MyComponent/>
+        </div>,
+        document.getElementById('example')
+      )
+    </script>
+  </body>
+</html>
+
+

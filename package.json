@@ -4,5 +4,8 @@
   "dependencies": {
     "gulp-minify": "^0.0.15",
     "minify": "^2.0.13"
+  },
+  "devDependencies": {
+    "eslint-plugin-vuefix": "^0.1.0"
   }
 }
